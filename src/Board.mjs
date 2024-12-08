@@ -31,4 +31,8 @@ export class Board {
       this.lines[2] = '.X.\n';
     }
   }
+
+  hasFalling() {
+    return true;
+  }
 }

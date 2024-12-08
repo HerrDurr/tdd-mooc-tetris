@@ -66,7 +66,7 @@ describe("Falling blocks", () => {
     });
 
     // Corrected test smell: two assertions in one (naughty naughty!)
-    test.skip("and the player should still be able to move the block", () => {
+    test("and the player should still be able to move the block", () => {
       expect(board.hasFalling()).to.be.true;
     });
 
