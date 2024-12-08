@@ -4,6 +4,7 @@ export class Board {
   width;
   height;
   lines = [emptyLine, emptyLine, emptyLine];
+  hasFallingBlock = true;
 
   constructor(width, height) {
     this.width = width;
@@ -23,16 +24,20 @@ export class Board {
   }
 
   tick() {
-    if (this.lines[1] === emptyLine) {
-      this.lines[0] = emptyLine;
-      this.lines[1] = '.X.\n';
-    } else {
-      this.lines[1] = emptyLine;
-      this.lines[2] = '.X.\n';
+    for (let i = 0; i < this.lines.length; i++) {
+      if (this.lines[i] !== emptyLine) {
+        if (i + 1 === this.lines.length) {
+          this.hasFallingBlock = false;
+        } else {
+          this.lines[i] = emptyLine;
+          this.lines[i+1] = '.X.\n';
+          break;
+        }
+      }
     }
   }
 
   hasFalling() {
-    return true;
+    return this.hasFallingBlock;
   }
 }

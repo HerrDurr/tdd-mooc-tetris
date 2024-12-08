@@ -70,7 +70,7 @@ describe("Falling blocks", () => {
       expect(board.hasFalling()).to.be.true;
     });
 
-    test.skip("and it stops when it hits the bottom", () => {
+    test("and it stops when it hits the bottom", () => {
       board.tick();
 
       expect(board.toString()).to.equalShape(
@@ -78,7 +78,7 @@ describe("Falling blocks", () => {
          ...
          .X.`
       );
-      expect(board.hasFalling(), "the block should stop moving").to.be.false;
+      expect(board.hasFalling(), "and the block should stop moving").to.be.false;
     });
   });
   
