@@ -6,7 +6,6 @@ export class Board {
   lines = [emptyLine, emptyLine, emptyLine];
   lineOne = emptyLine;
   lineTwo = emptyLine;
-  lineThree = emptyLine;
 
   constructor(width, height) {
     this.width = width;
@@ -35,7 +34,6 @@ export class Board {
     } else {
       this.lineTwo = emptyLine;
       this.lines[1] = emptyLine;
-      this.lineThree = '.X.\n';
       this.lines[2] = '.X.\n';
     }
   }
