@@ -8,8 +8,7 @@ export class Board {
   }
 
   toString() {
-    return '...\n'+
-           '...\n'+
-           '...\n';
+    const line = '...\n';
+    return line+line+line;
   }
 }
