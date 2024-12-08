@@ -1,8 +1,10 @@
+const emptyLine = '...\n';
+
 export class Board {
   width;
   height;
-  lineOne = '...\n';
-  lineTwo = '...\n';
+  lineOne = emptyLine;
+  lineTwo = emptyLine;
 
   constructor(width, height) {
     this.width = width;
@@ -10,7 +12,7 @@ export class Board {
   }
 
   toString() {
-    const line = '...\n';
+    const line = emptyLine;
     return this.lineOne + this.lineTwo + line;
   }
 
@@ -19,7 +21,7 @@ export class Board {
   }
 
   tick() {
-    this.lineOne = '...\n';
+    this.lineOne = emptyLine;
     this.lineTwo = '.X.\n';
   }
 }
