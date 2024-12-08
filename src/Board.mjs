@@ -17,7 +17,11 @@ export class Board {
   }
 
   drop(block) {
-    this.lineOne = '.X.\n';
+    if (block === "Y") {
+      throw new Error("already falling");
+    } else {
+      this.lineOne = '.X.\n';
+    }
   }
 
   tick() {
