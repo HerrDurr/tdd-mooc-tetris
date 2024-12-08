@@ -5,7 +5,6 @@ export class Board {
   height;
   lines = [emptyLine, emptyLine, emptyLine];
   lineOne = emptyLine;
-  lineTwo = emptyLine;
 
   constructor(width, height) {
     this.width = width;
@@ -26,13 +25,11 @@ export class Board {
   }
 
   tick() {
-    if (this.lineTwo === emptyLine) {
+    if (this.lines[1] === emptyLine) {
       this.lineOne = emptyLine;
       this.lines[0] = emptyLine;
-      this.lineTwo = '.X.\n';
       this.lines[1] = '.X.\n';
     } else {
-      this.lineTwo = emptyLine;
       this.lines[1] = emptyLine;
       this.lines[2] = '.X.\n';
     }
