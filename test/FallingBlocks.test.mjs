@@ -49,24 +49,28 @@ describe("Falling blocks", () => {
   });
   
 
-  /*
-  describe("When a block reaches the bottom", () => {
+  
+  describe("A block reaches the bottom", () => {
     beforeEach(() => {
       board.drop("X");
       board.tick();
       board.tick();
     });
 
-    test("it is still moving on the last row", () => {
+    test("after ticking once for each row after the first", () => {
       expect(board.toString()).to.equalShape(
         `...
          ...
          .X.`
       );
-      expect(board.hasFalling(), "the player should still be able to move the block").to.be.true;
     });
 
-    test.skip("it stops when it hits the bottom", () => {
+    // Corrected test smell: two assertions in one (naughty naughty!)
+    test.skip("and the player should still be able to move the block", () => {
+      expect(board.hasFalling()).to.be.true;
+    });
+
+    test.skip("and it stops when it hits the bottom", () => {
       board.tick();
 
       expect(board.toString()).to.equalShape(
@@ -77,7 +81,7 @@ describe("Falling blocks", () => {
       expect(board.hasFalling(), "the block should stop moving").to.be.false;
     });
   });
-  */
+  
 
   /*
   describe("When a block lands on another block", () => {

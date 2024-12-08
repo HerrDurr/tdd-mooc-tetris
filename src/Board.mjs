@@ -5,6 +5,7 @@ export class Board {
   height;
   lineOne = emptyLine;
   lineTwo = emptyLine;
+  lineThree = emptyLine;
 
   constructor(width, height) {
     this.width = width;
@@ -12,8 +13,7 @@ export class Board {
   }
 
   toString() {
-    const line = emptyLine;
-    return this.lineOne + this.lineTwo + line;
+    return this.lineOne + this.lineTwo + this.lineThree;
   }
 
   drop(block) {
@@ -25,7 +25,12 @@ export class Board {
   }
 
   tick() {
-    this.lineOne = emptyLine;
-    this.lineTwo = '.X.\n';
+    if (this.lineTwo === emptyLine) {
+      this.lineOne = emptyLine;
+      this.lineTwo = '.X.\n';
+    } else {
+      this.lineTwo = emptyLine;
+      this.lineThree = '.X.\n';
+    }
   }
 }
