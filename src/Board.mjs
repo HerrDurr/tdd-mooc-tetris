@@ -1,6 +1,7 @@
 export class Board {
   width;
   height;
+  lineOne = '...\n';
 
   constructor(width, height) {
     this.width = width;
@@ -9,6 +10,10 @@ export class Board {
 
   toString() {
     const line = '...\n';
-    return line+line+line;
+    return this.lineOne + line + line;
+  }
+
+  drop(block) {
+    this.lineOne = '.X.\n';
   }
 }
