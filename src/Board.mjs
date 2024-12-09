@@ -22,7 +22,7 @@ export class Board {
   }
 
   drop(block) {
-    if (block === "Y") {
+    if (this.hasFalling() === true) {
       throw new Error("already falling");
     } else {
       this.fallingBlockTop = 0;
@@ -33,7 +33,7 @@ export class Board {
     if (this.fallingBlockTop === this.height - 1) {
       this.fallingBlockTop = -1;
       this.blockAtBottom = true;
-    } else if (this.hasFalling) {
+    } else if (this.hasFalling() === true) {
       this.fallingBlockTop += 1;
     }
   }
