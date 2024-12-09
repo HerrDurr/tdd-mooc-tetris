@@ -4,7 +4,7 @@ export class Board {
   width;
   height;
   lines = [emptyLine, emptyLine, emptyLine];
-  hasFallingBlock = true;
+  fallingBlockTop = -1;
 
   constructor(width, height) {
     this.width = width;
@@ -20,6 +20,7 @@ export class Board {
       throw new Error("already falling");
     } else {
       this.lines[0] = '.X.\n';
+      this.fallingBlockTop = 0;
     }
   }
 
@@ -27,10 +28,11 @@ export class Board {
     for (let i = 0; i < this.lines.length; i++) {
       if (this.lines[i] !== emptyLine) {
         if (i + 1 === this.lines.length) {
-          this.hasFallingBlock = false;
+          this.fallingBlockTop = -1;
         } else {
           this.lines[i] = emptyLine;
           this.lines[i+1] = '.X.\n';
+          this.fallingBlockTop = i+1;
           break;
         }
       }
@@ -38,6 +40,6 @@ export class Board {
   }
 
   hasFalling() {
-    return this.hasFallingBlock;
+    return this.fallingBlockTop >= 0;
   }
 }

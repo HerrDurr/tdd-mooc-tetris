@@ -81,6 +81,21 @@ describe("Falling blocks", () => {
       expect(board.hasFalling(), "and the block should stop moving").to.be.false;
     });
   });
+
+  // This test was required for incremental implementation, since I didn't want everything based on assumptions.
+  describe("It matters not what the block looks like", () => {
+    beforeEach(() => {
+      board.drop("Y");
+    });
+
+    test.skip("it behaves similarly (here: starts from the middle)", () => {
+      expect(board.toString()).to.equalShape(
+        `.Y.
+         ...
+         ...`
+      );
+    });
+  });
   
 
   /*
