@@ -3,7 +3,6 @@ const emptyLine = '...\n';
 export class Board {
   width;
   height;
-  lines = [emptyLine, emptyLine, emptyLine];
   fallingBlockTop = -1;
   blockAtBottom = false;
 
@@ -26,21 +25,18 @@ export class Board {
     if (block === "Y") {
       throw new Error("already falling");
     } else {
-      this.lines[0] = '.X.\n';
       this.fallingBlockTop = 0;
     }
   }
 
   tick() {
-    for (let i = 0; i < this.lines.length; i++) {
-      if (this.lines[i] !== emptyLine) {
-        if (i + 1 === this.lines.length) {
+    for (let i = 0; i < this.height; i++) {
+      if (this.fallingBlockTop === i) {
+        if (i + 1 === this.height) {
           this.fallingBlockTop = -1;
           this.blockAtBottom = true;
         } else {
-          this.lines[i] = emptyLine;
-          this.lines[i+1] = '.X.\n';
-          this.fallingBlockTop = i+1;
+          this.fallingBlockTop += 1;
           break;
         }
       }
