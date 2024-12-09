@@ -13,7 +13,7 @@ export class Board {
   }
 
   toString() {
-    const lineArray = [emptyLine, emptyLine, emptyLine];
+    const lineArray = [this.line(), this.line(), this.line()];
     if (this.fallingBlockTop >= 0) {
       lineArray[this.fallingBlockTop] = this.line(this.fallingBlock);
     }
@@ -24,7 +24,11 @@ export class Board {
   }
 
   line(block) {
-    return '.' + block + '.\n';
+    if (block) {
+      return '.' + block + '.\n';
+    } else {
+      return emptyLine;
+    }
   }
 
   drop(block) {
