@@ -44,12 +44,16 @@ export class Board {
   }
 
   tick() {
-    if (this.fallingBlockTop === this.lastRowIndex() - this.blocksAtBottom.length) {
+    if (this.fallingBlockTop === this.lastFreeRowIndex()) {
       this.fallingBlockTop = -1;
       this.blocksAtBottom[this.blocksAtBottom.length] = this.fallingBlock;
     } else if (this.hasFalling() === true) {
       this.fallingBlockTop += 1;
     }
+  }
+
+  lastFreeRowIndex() {
+    return this.lastRowIndex() - this.blocksAtBottom.length;
   }
 
   lastRowIndex() {
