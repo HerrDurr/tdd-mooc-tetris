@@ -16,7 +16,8 @@ export class Board {
     const lineArray = [emptyLine, emptyLine, emptyLine];
     if (this.fallingBlockTop >= 0) {
       lineArray[this.fallingBlockTop] = '.' + this.fallingBlock + '.\n';
-    } else if (this.blockAtBottom) {
+    }
+    if (this.blockAtBottom) {
       lineArray[this.height - 1] = '.' + this.blockAtBottom + '.\n';
     }
     return lineArray.join('');
