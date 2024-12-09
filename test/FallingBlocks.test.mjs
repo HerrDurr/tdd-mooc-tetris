@@ -95,6 +95,18 @@ describe("Falling blocks", () => {
          ...`
       );
     });
+
+    test("it also stops when it hits the bottom", () => {
+      board.tick();
+      board.tick();
+      board.tick();
+
+      expect(board.toString()).to.equalShape(
+        `...
+         ...
+         .Y.`
+      );
+    });
   });
   
 

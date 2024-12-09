@@ -4,7 +4,7 @@ export class Board {
   width;
   height;
   fallingBlockTop = -1;
-  blockAtBottom = false;
+  blockAtBottom;
   fallingBlock;
 
   constructor(width, height) {
@@ -17,7 +17,7 @@ export class Board {
     if (this.fallingBlockTop >= 0) {
       lineArray[this.fallingBlockTop] = '.' + this.fallingBlock + '.\n';
     } else if (this.blockAtBottom) {
-      lineArray[this.height - 1] = '.X.\n';
+      lineArray[this.height - 1] = '.' + this.blockAtBottom + '.\n';
     }
     return lineArray.join('');
   }
@@ -34,7 +34,7 @@ export class Board {
   tick() {
     if (this.fallingBlockTop === this.height - 1) {
       this.fallingBlockTop = -1;
-      this.blockAtBottom = true;
+      this.blockAtBottom = this.fallingBlock;
     } else if (this.hasFalling() === true) {
       this.fallingBlockTop += 1;
     }
