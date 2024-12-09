@@ -88,7 +88,7 @@ describe("Falling blocks", () => {
       board.drop("Y");
     });
 
-    test.skip("it behaves similarly (here: starts from the middle)", () => {
+    test("it behaves similarly (here: starts from the middle)", () => {
       expect(board.toString()).to.equalShape(
         `.Y.
          ...

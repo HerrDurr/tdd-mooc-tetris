@@ -5,6 +5,7 @@ export class Board {
   height;
   fallingBlockTop = -1;
   blockAtBottom = false;
+  fallingBlock;
 
   constructor(width, height) {
     this.width = width;
@@ -14,7 +15,7 @@ export class Board {
   toString() {
     const lineArray = [emptyLine, emptyLine, emptyLine];
     if (this.fallingBlockTop >= 0) {
-      lineArray[this.fallingBlockTop] = '.X.\n';
+      lineArray[this.fallingBlockTop] = '.' + this.fallingBlock + '.\n';
     } else if (this.blockAtBottom) {
       lineArray[this.height - 1] = '.X.\n';
     }
@@ -26,6 +27,7 @@ export class Board {
       throw new Error("already falling");
     } else {
       this.fallingBlockTop = 0;
+      this.fallingBlock = block;
     }
   }
 
