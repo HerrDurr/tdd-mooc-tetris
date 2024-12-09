@@ -15,12 +15,16 @@ export class Board {
   toString() {
     const lineArray = [emptyLine, emptyLine, emptyLine];
     if (this.fallingBlockTop >= 0) {
-      lineArray[this.fallingBlockTop] = '.' + this.fallingBlock + '.\n';
+      lineArray[this.fallingBlockTop] = this.line(this.fallingBlock);
     }
     if (this.blockAtBottom) {
-      lineArray[this.height - 1] = '.' + this.blockAtBottom + '.\n';
+      lineArray[this.height - 1] = this.line(this.blockAtBottom);
     }
     return lineArray.join('');
+  }
+
+  line(block) {
+    return '.' + block + '.\n';
   }
 
   drop(block) {
