@@ -17,11 +17,9 @@ export class Board {
     if (this.fallingBlockTop >= 0) {
       lineArray[this.fallingBlockTop] = this.line(this.fallingBlock);
     }
-    if (this.blocksAtBottom.length > 0) {
-      lineArray[this.lastRowIndex()] = this.line(this.blocksAtBottom[0]);
-      if (this.blocksAtBottom.length === 2) {
-        lineArray[this.lastRowIndex() - 1] = this.line(this.blocksAtBottom[1]);
-      }
+    for (let iBlock = this.blocksAtBottom.length - 1; iBlock >= 0; iBlock--) {
+      let iLine = this.lastRowIndex() - iBlock;
+      lineArray[iLine] = this.line(this.blocksAtBottom[iBlock]);
     }
     return lineArray.join('');
   }
