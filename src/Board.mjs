@@ -30,16 +30,11 @@ export class Board {
   }
 
   tick() {
-    for (let i = 0; i < this.height; i++) {
-      if (this.fallingBlockTop === i) {
-        if (i + 1 === this.height) {
-          this.fallingBlockTop = -1;
-          this.blockAtBottom = true;
-        } else {
-          this.fallingBlockTop += 1;
-          break;
-        }
-      }
+    if (this.fallingBlockTop === this.height - 1) {
+      this.fallingBlockTop = -1;
+      this.blockAtBottom = true;
+    } else if (this.hasFalling) {
+      this.fallingBlockTop += 1;
     }
   }
 
