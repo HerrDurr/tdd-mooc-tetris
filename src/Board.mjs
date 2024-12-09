@@ -5,6 +5,7 @@ export class Board {
   height;
   lines = [emptyLine, emptyLine, emptyLine];
   fallingBlockTop = -1;
+  blockAtBottom = false;
 
   constructor(width, height) {
     this.width = width;
@@ -12,7 +13,13 @@ export class Board {
   }
 
   toString() {
-    return this.lines.join('');
+    const lineArray = [emptyLine, emptyLine, emptyLine];
+    if (this.fallingBlockTop >= 0) {
+      lineArray[this.fallingBlockTop] = '.X.\n';
+    } else if (this.blockAtBottom) {
+      lineArray[this.height - 1] = '.X.\n';
+    }
+    return lineArray.join('');
   }
 
   drop(block) {
@@ -29,6 +36,7 @@ export class Board {
       if (this.lines[i] !== emptyLine) {
         if (i + 1 === this.lines.length) {
           this.fallingBlockTop = -1;
+          this.blockAtBottom = true;
         } else {
           this.lines[i] = emptyLine;
           this.lines[i+1] = '.X.\n';
