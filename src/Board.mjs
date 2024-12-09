@@ -18,9 +18,9 @@ export class Board {
       lineArray[this.fallingBlockTop] = this.line(this.fallingBlock);
     }
     if (this.blocksAtBottom.length > 0) {
-      lineArray[this.height - 1] = this.line(this.blocksAtBottom[0]);
+      lineArray[this.lastRowIndex()] = this.line(this.blocksAtBottom[0]);
       if (this.blocksAtBottom.length === 2) {
-        lineArray[this.height - 2] = this.line(this.blocksAtBottom[1]);
+        lineArray[this.lastRowIndex() - 1] = this.line(this.blocksAtBottom[1]);
       }
     }
     return lineArray.join('');
@@ -44,12 +44,16 @@ export class Board {
   }
 
   tick() {
-    if (this.fallingBlockTop === this.height - 1 - this.blocksAtBottom.length) {
+    if (this.fallingBlockTop === this.lastRowIndex() - this.blocksAtBottom.length) {
       this.fallingBlockTop = -1;
       this.blocksAtBottom[this.blocksAtBottom.length] = this.fallingBlock;
     } else if (this.hasFalling() === true) {
       this.fallingBlockTop += 1;
     }
+  }
+
+  lastRowIndex() {
+    return this.height - 1;
   }
 
   hasFalling() {
