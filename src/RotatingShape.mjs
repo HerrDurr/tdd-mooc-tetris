@@ -21,10 +21,14 @@ export class RotatingShape {
     return originalString.substring(0, index) + char + originalString.substring(index + 1);
   }
 
-  rotatedRow(oldColIdx) {
+  rotatedRow(oldColIdx, isRight) {
     let newRow = '';
     for (let oldRowIdx = 0; oldRowIdx < this.shapeString.length; oldRowIdx++) {
-      newRow = this.shapeString[oldRowIdx][oldColIdx] + newRow;
+      if (isRight) {
+        newRow = this.shapeString[oldRowIdx][oldColIdx] + newRow;
+      } else {
+        newRow = newRow + this.shapeString[oldRowIdx][oldColIdx];
+      }
     }
     return newRow;
   }
@@ -33,7 +37,7 @@ export class RotatingShape {
     const newShape = Array.from(this.shapeString);
     for (let oldColIdx = 0; oldColIdx < this.shapeString.length; oldColIdx++) {
       let newRowIdx = oldColIdx;
-      newShape[newRowIdx] = this.rotatedRow(oldColIdx);
+      newShape[newRowIdx] = this.rotatedRow(oldColIdx, true);
     }
     return new RotatingShape(newShape);
   }
@@ -42,11 +46,7 @@ export class RotatingShape {
     const newShape = Array.from(this.shapeString);
     for (let oldColIdx = 0; oldColIdx < this.shapeString.length; oldColIdx++) {
       let newRowIdx = this.maxIndex() - oldColIdx;
-      for (let oldRowIdx = 0; oldRowIdx < this.shapeString.length; oldRowIdx++) {
-        let newColIdx = oldRowIdx;
-        let newRow = this.replaceCharAtIndex(newShape[newRowIdx], this.shapeString[oldRowIdx][oldColIdx], newColIdx);
-        newShape[newRowIdx] = newRow;
-      }
+      newShape[newRowIdx] = this.rotatedRow(oldColIdx, false);
     }
     return new RotatingShape(newShape);
   }
