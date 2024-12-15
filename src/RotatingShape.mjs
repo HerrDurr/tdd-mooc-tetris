@@ -33,6 +33,9 @@ export class RotatingShape {
     const newShape = Array.from(this.shapeString);
     for (let oldColIdx = 0; oldColIdx < this.shapeString.length; oldColIdx++) {
       let newRowIdx = oldColIdx;
+      if (!isRight) {
+        newRowIdx = this.maxIndex() - newRowIdx;
+      }  
       newShape[newRowIdx] = this.rotatedRow(oldColIdx, isRight);
     }
     return new RotatingShape(newShape);
@@ -43,11 +46,6 @@ export class RotatingShape {
   }
 
   rotateLeft() {
-    const newShape = Array.from(this.shapeString);
-    for (let oldColIdx = 0; oldColIdx < this.shapeString.length; oldColIdx++) {
-      let newRowIdx = this.maxIndex() - oldColIdx;
-      newShape[newRowIdx] = this.rotatedRow(oldColIdx, false);
-    }
-    return new RotatingShape(newShape);
+    return this.rotate(false);
   }
 }
