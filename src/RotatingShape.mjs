@@ -29,13 +29,17 @@ export class RotatingShape {
     return newRow;
   }
 
-  rotateRight() {
+  rotate(isRight) {
     const newShape = Array.from(this.shapeString);
     for (let oldColIdx = 0; oldColIdx < this.shapeString.length; oldColIdx++) {
       let newRowIdx = oldColIdx;
-      newShape[newRowIdx] = this.rotatedRow(oldColIdx, true);
+      newShape[newRowIdx] = this.rotatedRow(oldColIdx, isRight);
     }
     return new RotatingShape(newShape);
+  }
+
+  rotateRight() {
+    return this.rotate(true);
   }
 
   rotateLeft() {
