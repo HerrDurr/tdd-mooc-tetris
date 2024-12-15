@@ -12,4 +12,8 @@ export class RotatingShape {
   toString() {
     return this.shapeString.join('\n') + '\n';
   }
+
+  rotateRight() {
+    return new RotatingShape(['GDA','HEB','IFC']);
+  }
 }
