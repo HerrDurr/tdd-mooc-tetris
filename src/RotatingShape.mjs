@@ -17,10 +17,6 @@ export class RotatingShape {
     return this.shapeString.length - 1;
   }
 
-  replaceCharAtIndex(originalString, char, index) {
-    return originalString.substring(0, index) + char + originalString.substring(index + 1);
-  }
-
   rotatedRow(oldColIdx, isRight) {
     let newRow = '';
     for (let oldRowIdx = 0; oldRowIdx < this.shapeString.length; oldRowIdx++) {
