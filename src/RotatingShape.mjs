@@ -14,7 +14,16 @@ export class RotatingShape {
   }
 
   rotateRight() {
-    return new RotatingShape(['GDA','HEB','IFC']);
+    const newShape = Array.from(this.shapeString);
+    for (let oldColIdx = 0; oldColIdx < this.shapeString.length; oldColIdx++) {
+      let newRowIdx = oldColIdx;
+      for (let oldRowIdx = 0; oldRowIdx < this.shapeString.length; oldRowIdx++) {
+        let newColIdx = this.shapeString.length - 1 - oldRowIdx;
+        let newRow = newShape[newRowIdx].substring(0, newColIdx) + this.shapeString[oldRowIdx][oldColIdx] + newShape[newRowIdx].substring(newColIdx + 1);
+        newShape[newRowIdx] = newRow;
+      }
+    }
+    return new RotatingShape(newShape);
   }
 
   rotateLeft() {
