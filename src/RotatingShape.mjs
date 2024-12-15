@@ -16,4 +16,8 @@ export class RotatingShape {
   rotateRight() {
     return new RotatingShape(['GDA','HEB','IFC']);
   }
+
+  rotateLeft() {
+    return new RotatingShape(['CFI','BEH','ADG']);
+  }
 }
