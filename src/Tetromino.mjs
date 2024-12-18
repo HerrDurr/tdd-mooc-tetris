@@ -1,6 +1,7 @@
 export class Tetromino {
 
   static T_SHAPE = new Tetromino(['.T.','TTT','...']);
+  static I_SHAPE = new Tetromino(['.....','.....','IIII.','.....','.....']);
 
   shapeString = [];
 
