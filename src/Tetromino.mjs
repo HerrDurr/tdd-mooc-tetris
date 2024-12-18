@@ -16,4 +16,8 @@ export class Tetromino {
     return new Tetromino(['.T.','.TT','.T.']);
   }
 
+  rotateLeft() {
+    return new Tetromino(['.T.','TT.','.T.']);
+  }
+
 }
