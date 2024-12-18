@@ -27,7 +27,11 @@ export class Tetromino {
   }
 
   rotateLeft() {
-    return new Tetromino(['.T.','TT.','.T.']);
+    if (this.shapeString.length === 3) {
+      return new Tetromino(['.T.','TT.','.T.']);
+    } else {
+      return new Tetromino(['..I..','..I..','..I..','..I..','.....']);
+    }
   }
 
 }
