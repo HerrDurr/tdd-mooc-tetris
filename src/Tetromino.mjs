@@ -1,9 +1,15 @@
 export class Tetromino {
 
-  static T_SHAPE = new Tetromino();
+  static T_SHAPE = new Tetromino(['.T.','TTT','...']);
+
+  shapeString = [];
+
+  constructor(shapeString) {
+    this.shapeString = shapeString;
+  }
 
   toString() {
-    return '.T.\nTTT\n...\n';
+    return this.shapeString.join('\n') + '\n';
   }
 
 }
