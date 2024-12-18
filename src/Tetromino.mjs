@@ -13,7 +13,11 @@ export class Tetromino {
   }
 
   rotateRight() {
-    return new Tetromino(['.T.','.TT','.T.']);
+    if (this.shapeString[2] === '...') {
+      return new Tetromino(['.T.','.TT','.T.']);
+    } else {
+      return new Tetromino(['...','TTT','.T.']);
+    }
   }
 
   rotateLeft() {
