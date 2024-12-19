@@ -17,9 +17,13 @@ export class Tetromino {
     return this.shapeString.join('\n') + '\n';
   }
 
+  altShape() {
+    return new Tetromino(this.altShapeString, this.shapeString);
+  }
+
   rotateRight() {
     if (this.altShapeString) {
-      return new Tetromino(this.altShapeString, this.shapeString);
+      return this.altShape();
     }
     const newShape = Array.from(this.shapeString);
     for (let oldColIdx = 0; oldColIdx < this.shapeString.length; oldColIdx++) {
@@ -37,7 +41,7 @@ export class Tetromino {
     if (this.shapeString.length === 3) {
       return new Tetromino(['.T.','TT.','.T.']);
     } else {
-      return new Tetromino(this.altShapeString, this.shapeString);
+      return this.altShape();
     }
   }
 
