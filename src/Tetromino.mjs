@@ -36,10 +36,20 @@ export class Tetromino {
     return newRow;
   }
 
+  rotate(isRight) {
+    const newShape = Array.from(this.shapeString);
+    for (let oldColIdx = 0; oldColIdx < this.shapeString.length; oldColIdx++) {
+      let newRowIdx = oldColIdx;
+      newShape[newRowIdx] = this.rotatedRow(oldColIdx, true);
+    }
+    return new Tetromino(newShape);
+  }
+
   rotateRight() {
     if (this.altShapeString) {
       return this.altShape();
     }
+    return this.rotate(true);
     const newShape = Array.from(this.shapeString);
     for (let oldColIdx = 0; oldColIdx < this.shapeString.length; oldColIdx++) {
       let newRowIdx = oldColIdx;
