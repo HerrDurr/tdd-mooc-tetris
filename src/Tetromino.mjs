@@ -24,10 +24,14 @@ export class Tetromino {
     return new Tetromino(this.altShapeString, this.shapeString);
   }
 
-  rotatedRow(oldColIdx) {
+  rotatedRow(oldColIdx, isRight) {
     let newRow = '';
     for (let oldRowIdx = 0; oldRowIdx < this.shapeString.length; oldRowIdx++) {
-      newRow = this.shapeString[oldRowIdx][oldColIdx] + newRow;
+      if (isRight) {
+        newRow = this.shapeString[oldRowIdx][oldColIdx] + newRow;
+      } else {
+        newRow = newRow + this.shapeString[oldRowIdx][oldColIdx];
+      }
     }
     return newRow;
   }
@@ -40,7 +44,7 @@ export class Tetromino {
     for (let oldColIdx = 0; oldColIdx < this.shapeString.length; oldColIdx++) {
       let newRowIdx = oldColIdx;
       for (let oldRowIdx = 0; oldRowIdx < this.shapeString.length; oldRowIdx++) {
-        let newRow = this.rotatedRow(oldColIdx);
+        let newRow = this.rotatedRow(oldColIdx, true);
         newShape[newRowIdx] = newRow;
       }
     }
@@ -55,8 +59,7 @@ export class Tetromino {
       for (let oldColIdx = 0; oldColIdx < this.shapeString.length; oldColIdx++) {
         let newRowIdx = this.shapeString.length - 1 - oldColIdx;
         for (let oldRowIdx = 0; oldRowIdx < this.shapeString.length; oldRowIdx++) {
-          let newColIdx = oldRowIdx;
-          let newRow = newShape[newRowIdx].substring(0, newColIdx) + this.shapeString[oldRowIdx][oldColIdx] + newShape[newRowIdx].substring(newColIdx + 1);
+          let newRow = this.rotatedRow(oldColIdx, false);
           newShape[newRowIdx] = newRow;
         }
       }
