@@ -1,12 +1,16 @@
 export class Tetromino {
 
   static T_SHAPE = new Tetromino(['.T.','TTT','...']);
-  static I_SHAPE = new Tetromino(['.....','.....','IIII.','.....','.....']);
+  static I_SHAPE = new Tetromino(['.....','.....','IIII.','.....','.....'],
+                                 ['..I..','..I..','..I..','..I..','.....']
+  );
 
   shapeString = [];
+  altShapeString;
 
-  constructor(shapeString) {
+  constructor(shapeString, altShapeString) {
     this.shapeString = shapeString;
+    this.altShapeString = altShapeString;
   }
 
   toString() {
