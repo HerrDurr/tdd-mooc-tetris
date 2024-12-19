@@ -4,6 +4,7 @@ export class Tetromino {
   static I_SHAPE = new Tetromino(['.....','.....','IIII.','.....','.....'],
                                  ['..I..','..I..','..I..','..I..','.....']
   );
+  static O_SHAPE = new Tetromino(['.OO','.OO','...']);
 
   shapeString = [];
   altShapeString;
