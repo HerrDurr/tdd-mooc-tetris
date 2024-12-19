@@ -38,10 +38,10 @@ export class Tetromino {
   }
 
   rotateLeft() {
-    if (this.shapeString.length === 3) {
-      return new Tetromino(['.T.','TT.','.T.']);
-    } else {
+    if (this.altShapeString) {
       return this.altShape();
+    } else {
+      return new Tetromino(['.T.','TT.','.T.']);
     }
   }
 
