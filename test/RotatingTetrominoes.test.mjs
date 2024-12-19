@@ -2,16 +2,34 @@ import { describe, test } from "vitest";
 import { expect } from "chai";
 import { Tetromino } from "../src/Tetromino.mjs";
 
-function distinctOrientations(shape) {
+function distinctOrientationsRight(shape) {
   const distinct = new Set();
   let goingRight = shape;
-  let goingLeft = shape;
   for (let i = 0; i < 10; i++) {
     distinct.add(goingRight.toString());
     goingRight = goingRight.rotateRight();
+  }
+  return distinct;
+}
+
+function distinctOrientationsLeft(shape) {
+  const distinct = new Set();
+  let goingLeft = shape;
+  for (let i = 0; i < 10; i++) {
     distinct.add(goingLeft.toString());
     goingLeft = goingLeft.rotateLeft();
   }
+  return distinct;
+}
+
+function distinctOrientations(shape) {
+  const distinct = new Set();
+  distinctOrientationsRight(shape).forEach(function(orientation) {
+    distinct.add(orientation);
+  });
+  distinctOrientationsLeft(shape).forEach(function(orientation) {
+    distinct.add(orientation);
+  });
   return distinct;
 }
 
@@ -42,8 +60,12 @@ describe("The T shape", () => {
     );
   });
 
-  test("has 4 distinct orientations", () => {
-    expect(distinctOrientations(shape).size).to.equal(4);
+  test("has 4 distinct orientations when rotating right", () => {
+    expect(distinctOrientationsRight(shape).size).to.equal(4);
+  });
+
+  test("has 4 distinct orientations when rotating left", () => {
+    expect(distinctOrientationsLeft(shape).size).to.equal(4);
   });
 });
 

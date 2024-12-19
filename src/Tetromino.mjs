@@ -44,7 +44,16 @@ export class Tetromino {
     if (this.altShapeString) {
       return this.altShape();
     } else {
-      return new Tetromino(['.T.','TT.','.T.']);
+      const newShape = Array.from(this.shapeString);
+      for (let oldColIdx = 0; oldColIdx < this.shapeString.length; oldColIdx++) {
+        let newRowIdx = this.shapeString.length - 1 - oldColIdx;
+        for (let oldRowIdx = 0; oldRowIdx < this.shapeString.length; oldRowIdx++) {
+          let newColIdx = oldRowIdx;
+          let newRow = newShape[newRowIdx].substring(0, newColIdx) + this.shapeString[oldRowIdx][oldColIdx] + newShape[newRowIdx].substring(newColIdx + 1);
+          newShape[newRowIdx] = newRow;
+        }
+      }
+      return new Tetromino(newShape);
     }
   }
 
