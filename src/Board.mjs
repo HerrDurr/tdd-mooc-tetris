@@ -1,3 +1,4 @@
+import { Block } from "../src/Block.mjs";
 const emptyLine = '...\n';
 
 export class Board {
@@ -15,7 +16,7 @@ export class Board {
   toString() {
     const lineArray = [this.line(), this.line(), this.line()];
     if (this.fallingBlockTop >= 0) {
-      lineArray[this.fallingBlockTop] = this.line(this.fallingBlock);
+      lineArray[this.fallingBlockTop] = this.line(this.fallingBlock.toString());
     }
     for (let iBlock = this.blocksAtBottom.length - 1; iBlock >= 0; iBlock--) {
       let iLine = this.lastRowIndex() - iBlock;
@@ -37,14 +38,14 @@ export class Board {
       throw new Error("already falling");
     } else {
       this.fallingBlockTop = 0;
-      this.fallingBlock = block;
+      this.fallingBlock = new Block(block);
     }
   }
 
   tick() {
     if (this.fallingBlockTop === this.lastFreeRowIndex()) {
       this.fallingBlockTop = -1;
-      this.blocksAtBottom[this.blocksAtBottom.length] = this.fallingBlock;
+      this.blocksAtBottom[this.blocksAtBottom.length] = this.fallingBlock.toString();
     } else if (this.hasFalling() === true) {
       this.fallingBlockTop += 1;
     }
