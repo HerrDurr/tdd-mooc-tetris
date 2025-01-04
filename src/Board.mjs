@@ -1,5 +1,4 @@
 import { Block } from "../src/Block.mjs";
-const emptyLine = '...\n';
 
 export class Board {
   width;
@@ -29,7 +28,7 @@ export class Board {
     if (block) {
       return '.' + block + '.\n';
     } else {
-      return emptyLine;
+      return new Array(this.width + 1).join('.') + '\n';
     }
   }
 
