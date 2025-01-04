@@ -38,6 +38,7 @@ export class Board {
     } else {
       this.fallingBlockTop = 0;
       this.fallingBlock = new Block(block);
+      this.fallingBlock.setPos( [Math.trunc(this.width / 2), this.fallingBlockTop] );
     }
   }
 
