@@ -17,4 +17,8 @@ export class Block {
   getPos() {
     return this.pos;
   }
+
+  top() {
+    return this.getPos()[1];
+  }
 }

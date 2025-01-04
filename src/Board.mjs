@@ -15,7 +15,7 @@ export class Board {
   toString() {
     const lineArray = Array.from({length: this.height}, (_, i) => this.line());
     if (this.hasFalling()) {
-      lineArray[this.fallingBlock.getPos()[1]] = this.line(this.fallingBlock.toString());
+      lineArray[this.fallingBlock.top()] = this.line(this.fallingBlock.toString());
     }
     for (let iBlock = this.blocksAtBottom.length - 1; iBlock >= 0; iBlock--) {
       let iLine = this.lastRowIndex() - iBlock;
@@ -42,11 +42,11 @@ export class Board {
   }
 
   tick() {
-    if (this.fallingBlock.getPos()[1] === this.lastFreeRowIndex()) {
+    if (this.fallingBlock.top() === this.lastFreeRowIndex()) {
       this.blocksAtBottom[this.blocksAtBottom.length] = this.fallingBlock.toString();
       this.fallingBlock = null;
     } else if (this.hasFalling() === true) {
-      this.fallingBlock.setPos( [this.fallingBlock.getPos()[0], this.fallingBlock.getPos()[1] + 1] );
+      this.fallingBlock.setPos( [this.fallingBlock.getPos()[0], this.fallingBlock.top() + 1] );
     }
   }
 
