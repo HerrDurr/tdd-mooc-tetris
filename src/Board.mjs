@@ -36,9 +36,9 @@ export class Board {
     if (this.hasFalling() === true) {
       throw new Error("already falling");
     } else {
-      this.fallingBlockTop = 0;
       this.fallingBlock = new Block(block);
-      this.fallingBlock.setPos( [Math.trunc(this.width / 2), this.fallingBlockTop] );
+      this.fallingBlock.setPos( [Math.trunc(this.width / 2), 0] );
+      this.fallingBlockTop = this.fallingBlock.getPos()[1];
     }
   }
 
