@@ -1,11 +1,11 @@
+import { isNull } from "lodash";
 import { Block } from "../src/Block.mjs";
 
 export class Board {
   width;
   height;
-  fallingBlockTop = -1;
   blocksAtBottom = [];
-  fallingBlock;
+  fallingBlock = null;
 
   constructor(width, height) {
     this.width = width;
@@ -14,8 +14,8 @@ export class Board {
 
   toString() {
     const lineArray = Array.from({length: this.height}, (_, i) => this.line());
-    if (this.fallingBlockTop >= 0) {
-      lineArray[this.fallingBlockTop] = this.line(this.fallingBlock.toString());
+    if (this.hasFalling()) {
+      lineArray[this.fallingBlock.getPos()[1]] = this.line(this.fallingBlock.toString());
     }
     for (let iBlock = this.blocksAtBottom.length - 1; iBlock >= 0; iBlock--) {
       let iLine = this.lastRowIndex() - iBlock;
@@ -38,16 +38,15 @@ export class Board {
     } else {
       this.fallingBlock = new Block(block);
       this.fallingBlock.setPos( [Math.trunc(this.width / 2), 0] );
-      this.fallingBlockTop = this.fallingBlock.getPos()[1];
     }
   }
 
   tick() {
-    if (this.fallingBlockTop === this.lastFreeRowIndex()) {
-      this.fallingBlockTop = -1;
+    if (this.fallingBlock.getPos()[1] === this.lastFreeRowIndex()) {
       this.blocksAtBottom[this.blocksAtBottom.length] = this.fallingBlock.toString();
+      this.fallingBlock = null;
     } else if (this.hasFalling() === true) {
-      this.fallingBlockTop += 1;
+      this.fallingBlock.setPos( [this.fallingBlock.getPos()[0], this.fallingBlock.getPos()[1] + 1] );
     }
   }
 
@@ -60,6 +59,6 @@ export class Board {
   }
 
   hasFalling() {
-    return this.fallingBlockTop >= 0;
+    return !isNull(this.fallingBlock);
   }
 }
