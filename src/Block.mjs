@@ -21,4 +21,8 @@ export class Block {
   top() {
     return this.getPos()[1];
   }
+
+  left() {
+    return this.getPos()[0];
+  }
 }

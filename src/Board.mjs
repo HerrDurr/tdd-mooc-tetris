@@ -46,7 +46,7 @@ export class Board {
       this.blocksAtBottom[this.blocksAtBottom.length] = this.fallingBlock.toString();
       this.fallingBlock = null;
     } else if (this.hasFalling() === true) {
-      this.fallingBlock.setPos( [this.fallingBlock.getPos()[0], this.fallingBlock.top() + 1] );
+      this.fallingBlock.setPos( [this.fallingBlock.left(), this.fallingBlock.top() + 1] );
     }
   }
 
