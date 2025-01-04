@@ -14,7 +14,7 @@ export class Board {
   }
 
   toString() {
-    const lineArray = [this.line(), this.line(), this.line()];
+    const lineArray = Array.from({length: this.height}, (_, i) => this.line());
     if (this.fallingBlockTop >= 0) {
       lineArray[this.fallingBlockTop] = this.line(this.fallingBlock.toString());
     }
