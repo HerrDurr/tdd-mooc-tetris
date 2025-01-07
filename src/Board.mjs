@@ -15,21 +15,21 @@ export class Board {
   toString() {
     const lineArray = Array.from({length: this.height}, (_, i) => this.line());
     if (this.hasFalling()) {
-      lineArray[this.fallingBlock.top()] = this.line(this.fallingBlock.toString());
+      lineArray[this.fallingBlock.top()] = this.line(this.fallingBlock.toString(), this.fallingBlock.left());
     }
     for (let iBlock = this.blocksAtBottom.length - 1; iBlock >= 0; iBlock--) {
       let iLine = this.lastRowIndex() - iBlock;
-      lineArray[iLine] = this.line(this.blocksAtBottom[iBlock]);
+      lineArray[iLine] = this.line(this.blocksAtBottom[iBlock], 1);
     }
     return lineArray.join('');
   }
 
-  line(block) {
+  line(block, blockLeft) {
+    const lineArray = Array.from({length: this.height}, (_, i) => '.');
     if (block) {
-      return '.' + block + '.\n';
-    } else {
-      return new Array(this.width + 1).join('.') + '\n';
-    }
+      lineArray[blockLeft] = block;
+    } 
+    return lineArray.join('') + '\n';
   }
 
   drop(block) {
