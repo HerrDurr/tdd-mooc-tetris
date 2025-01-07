@@ -35,10 +35,12 @@ export class Board {
   drop(block) {
     if (this.hasFalling() === true) {
       throw new Error("already falling");
-    } else {
+    } else if (typeof block === 'string') {
       this.fallingBlock = new Block(block);
-      this.fallingBlock.setPos( [Math.trunc(this.width / 2), 0] );
+    } else {
+      this.fallingBlock = block;
     }
+    this.fallingBlock.setPos( [Math.trunc(this.width / 2), 0] );
   }
 
   tick() {
