@@ -5,7 +5,7 @@ export class Board {
   width;
   height;
   staticBottom = [];
-  fallingBlock = null;
+  fallingShape = null;
 
   constructor(width, height) {
     this.width = width;
@@ -15,7 +15,7 @@ export class Board {
   toString() {
     const lineArray = Array.from({length: this.height}, (_, i) => this.line());
     if (this.hasFalling()) {
-      lineArray[this.fallingBlock.top()] = this.line(this.fallingBlock.toString(), this.fallingBlock.left());
+      lineArray[this.fallingShape.top()] = this.line(this.fallingShape.toString(), this.fallingShape.left());
     }
     for (let iBlock = this.staticBottom.length - 1; iBlock >= 0; iBlock--) {
       let iLine = this.lastRowIndex() - iBlock;
@@ -36,24 +36,24 @@ export class Board {
     if (this.hasFalling() === true) {
       throw new Error("already falling");
     } else if (typeof block === 'string') {
-      this.fallingBlock = new Block(block);
+      this.fallingShape = new Block(block);
     } else {
-      this.fallingBlock = block;
+      this.fallingShape = block;
     }
-    this.fallingBlock.setPos( [Math.trunc(this.width / 2), 0] );
+    this.fallingShape.setPos( [Math.trunc(this.width / 2), 0] );
   }
 
   tick() {
-    if (this.fallingBlock.top() === this.lastFreeRowIndex()) {
+    if (this.fallingShape.top() === this.lastFreeRowIndex()) {
       this.setShapeToBottom();
     } else if (this.hasFalling() === true) {
-      this.fallingBlock.setPos( [this.fallingBlock.left(), this.fallingBlock.top() + 1] );
+      this.fallingShape.setPos( [this.fallingShape.left(), this.fallingShape.top() + 1] );
     }
   }
 
   setShapeToBottom() {
-    this.staticBottom[this.staticBottom.length] = this.fallingBlock.toString();
-    this.fallingBlock = null;
+    this.staticBottom[this.staticBottom.length] = this.fallingShape.toString();
+    this.fallingShape = null;
   }
 
   lastFreeRowIndex() {
@@ -65,6 +65,6 @@ export class Board {
   }
 
   hasFalling() {
-    return !isNull(this.fallingBlock);
+    return !isNull(this.fallingShape);
   }
 }
