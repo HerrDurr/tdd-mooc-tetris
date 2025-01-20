@@ -1,8 +1,11 @@
-export class Block {
+import { Shape } from "./Shape.mjs";
+
+export class Block extends Shape {
   character = "";
   pos = [-1, -1];
 
   constructor(character) {
+    super();
     this.character = character;
   }
 
