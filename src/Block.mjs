@@ -2,7 +2,6 @@ import { Shape } from "./Shape.mjs";
 
 export class Block extends Shape {
   character = "";
-  pos = [-1, -1];
 
   constructor(character) {
     super();
@@ -11,10 +10,6 @@ export class Block extends Shape {
 
   toString() {
     return this.character;
-  }
-
-  setPos(pos) {
-    this.pos = pos;
   }
 
   getPos() {
