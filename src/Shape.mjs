@@ -14,4 +14,9 @@ export class Shape {
   getPos() {
     return this.pos;
   }
+
+  top() {
+    return this.getPos()[1];
+  }
+
 }

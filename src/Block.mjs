@@ -11,11 +11,6 @@ export class Block extends Shape {
   toString() {
     return this.character;
   }
-
-  top() {
-    return this.getPos()[1];
-  }
-
   left() {
     return this.getPos()[0];
   }
