@@ -19,4 +19,7 @@ export class Shape {
     return this.getPos()[1];
   }
 
+  left() {
+    return this.getPos()[0];
+  }
 }
