@@ -45,11 +45,15 @@ export class Board {
 
   tick() {
     if (this.fallingBlock.top() === this.lastFreeRowIndex()) {
-      this.staticBottom[this.staticBottom.length] = this.fallingBlock.toString();
-      this.fallingBlock = null;
+      this.setShapeToBottom();
     } else if (this.hasFalling() === true) {
       this.fallingBlock.setPos( [this.fallingBlock.left(), this.fallingBlock.top() + 1] );
     }
+  }
+
+  setShapeToBottom() {
+    this.staticBottom[this.staticBottom.length] = this.fallingBlock.toString();
+    this.fallingBlock = null;
   }
 
   lastFreeRowIndex() {
