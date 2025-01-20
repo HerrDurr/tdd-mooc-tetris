@@ -4,7 +4,7 @@ import { Block } from "../src/Block.mjs";
 export class Board {
   width;
   height;
-  blocksAtBottom = [];
+  staticBottom = [];
   fallingBlock = null;
 
   constructor(width, height) {
@@ -17,9 +17,9 @@ export class Board {
     if (this.hasFalling()) {
       lineArray[this.fallingBlock.top()] = this.line(this.fallingBlock.toString(), this.fallingBlock.left());
     }
-    for (let iBlock = this.blocksAtBottom.length - 1; iBlock >= 0; iBlock--) {
+    for (let iBlock = this.staticBottom.length - 1; iBlock >= 0; iBlock--) {
       let iLine = this.lastRowIndex() - iBlock;
-      lineArray[iLine] = this.line(this.blocksAtBottom[iBlock], 1);
+      lineArray[iLine] = this.line(this.staticBottom[iBlock], 1);
     }
     return lineArray.join('');
   }
@@ -45,7 +45,7 @@ export class Board {
 
   tick() {
     if (this.fallingBlock.top() === this.lastFreeRowIndex()) {
-      this.blocksAtBottom[this.blocksAtBottom.length] = this.fallingBlock.toString();
+      this.staticBottom[this.staticBottom.length] = this.fallingBlock.toString();
       this.fallingBlock = null;
     } else if (this.hasFalling() === true) {
       this.fallingBlock.setPos( [this.fallingBlock.left(), this.fallingBlock.top() + 1] );
@@ -53,7 +53,7 @@ export class Board {
   }
 
   lastFreeRowIndex() {
-    return this.lastRowIndex() - this.blocksAtBottom.length;
+    return this.lastRowIndex() - this.staticBottom.length;
   }
 
   lastRowIndex() {
