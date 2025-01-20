@@ -10,4 +10,8 @@ export class Shape {
   setPos(pos) {
     this.pos = pos;
   }
+
+  getPos() {
+    return this.pos;
+  }
 }

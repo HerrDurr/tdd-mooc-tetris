@@ -12,10 +12,6 @@ export class Block extends Shape {
     return this.character;
   }
 
-  getPos() {
-    return this.pos;
-  }
-
   top() {
     return this.getPos()[1];
   }
