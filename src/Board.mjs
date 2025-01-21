@@ -15,13 +15,17 @@ export class Board {
   toString() {
     const lineArray = Array.from({length: this.height}, (_, i) => this.line());
     if (this.hasFalling()) {
-      lineArray[this.fallingShape.top()] = this.line(this.fallingShape.toString(), this.fallingShape.left());
+      this.addShapeToLines(lineArray);
     }
     for (let iBlock = this.staticBottom.length - 1; iBlock >= 0; iBlock--) {
       let iLine = this.lastRowIndex() - iBlock;
       lineArray[iLine] = this.line(this.staticBottom[iBlock], 1);
     }
     return lineArray.join('');
+  }
+
+  addShapeToLines(lineArray) {
+    lineArray[this.fallingShape.top()] = this.line(this.fallingShape.toString(), this.fallingShape.left());
   }
 
   line(block, blockLeft) {
