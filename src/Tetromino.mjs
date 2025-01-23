@@ -1,4 +1,6 @@
-export class Tetromino {
+import { Shape } from "./Shape.mjs";
+
+export class Tetromino extends Shape {
 
   static T_SHAPE = new Tetromino(['.T.','TTT','...']);
   static I_SHAPE = new Tetromino(['.....','.....','IIII.','.....','.....'],
@@ -12,6 +14,7 @@ export class Tetromino {
   altShapeString;
 
   constructor(shapeString, altShapeString) {
+    super();
     this.shapeString = shapeString;
     this.altShapeString = altShapeString;
   }
