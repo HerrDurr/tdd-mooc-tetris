@@ -52,7 +52,7 @@ export class Board {
     } else {
       this.fallingShape = block;
     }
-    this.fallingShape.setPos( [Math.trunc(this.width / 2), 0] );
+    this.fallingShape.setPos( [Math.ceil(this.width / 2) - 1 - Math.trunc(this.fallingShape.width() / 2), 0] );
   }
 
   tick() {

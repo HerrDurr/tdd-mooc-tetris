@@ -11,4 +11,8 @@ export class Block extends Shape {
   toString() {
     return this.character;
   }
+
+  width() {
+    return 1;
+  }
 }
