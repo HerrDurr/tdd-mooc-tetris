@@ -32,7 +32,7 @@ export class Board {
   }
 
   line(shapeLine, left) {
-    const lineArray = Array.from({length: this.height}, (_, i) => '.');
+    const lineArray = Array.from({length: this.width}, (_, i) => '.');
     if (shapeLine&&left) {
       for (let iShapeLine = 0; iShapeLine < shapeLine.length; iShapeLine++) {
         const iLine = left + iShapeLine;
