@@ -28,7 +28,9 @@ export class Board {
     const top = this.fallingShape.top();
     const left = this.fallingShape.left();
     const shapeLines = this.fallingShape.toString().split('\n');
-    lineArray[top] = this.line(shapeLines[0], left);
+    for (let iShape = 0; iShape < shapeLines.length; iShape++) {
+      lineArray[top + iShape] = this.line(shapeLines[iShape], left);
+    }
   }
 
   line(shapeLine, left) {
