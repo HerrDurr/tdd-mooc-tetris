@@ -31,10 +31,13 @@ export class Board {
     lineArray[top] = this.line(shapeLines[0], left);
   }
 
-  line(block, blockLeft) {
+  line(shapeLine, left) {
     const lineArray = Array.from({length: this.height}, (_, i) => '.');
-    if (block) {
-      lineArray[blockLeft] = block;
+    if (shapeLine&&left) {
+      for (let iShapeLine = 0; iShapeLine < shapeLine.length; iShapeLine++) {
+        const iLine = left + iShapeLine;
+        lineArray[iLine] = shapeLine[iShapeLine];
+      }
     } 
     return lineArray.join('') + '\n';
   }
