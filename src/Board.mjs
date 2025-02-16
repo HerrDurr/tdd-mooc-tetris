@@ -6,6 +6,7 @@ export class Board {
   height;
   linesWithStaticShapes = [];
   fallingShape = null;
+  fallingPos = [-1,-1];
 
   constructor(width, height) {
     this.width = width;
@@ -28,7 +29,7 @@ export class Board {
   }
 
   addFallingShapeToLines(lineArray) {
-    const top = this.fallingShape.top();
+    const top = this.fallingPos[1];
     const left = this.fallingShape.left();
     const shapeLines = this.fallingShape.lines();
     for (let iShape = 0; iShape < shapeLines.length; iShape++) {
@@ -58,6 +59,8 @@ export class Board {
       this.fallingShape = block;
     }
     this.fallingShape.setPos( [Math.ceil(this.width / 2) - 1 - Math.trunc(this.fallingShape.width() / 2), 0] );
+    this.fallingPos[0] = Math.ceil(this.width / 2) - 1 - Math.trunc(this.fallingShape.width() / 2);
+    this.fallingPos[1] = 0;
   }
 
   tick() {
@@ -66,6 +69,7 @@ export class Board {
         this.setShapeToBottom();
       } else {
         this.fallingShape.setPos( [this.fallingShape.left(), this.fallingShape.top() + 1] );
+        this.fallingPos[1] = this.fallingPos[1] + 1;
       }
     }
   }
