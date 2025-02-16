@@ -12,10 +12,6 @@ export class Block extends Shape {
     return [this.character];
   }
 
-  width() {
-    return 1;
-  }
-
   shapeHeight() {
     return 1;
   }
