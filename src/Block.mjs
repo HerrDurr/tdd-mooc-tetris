@@ -17,6 +17,10 @@ export class Block extends Shape {
   }
 
   shapeBottomIndexOnBoard() {
-    return this.top();
+    return this.top() + this.shapeHeight() - 1;
+  }
+
+  shapeHeight() {
+    return 1;
   }
 }
