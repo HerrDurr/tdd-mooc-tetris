@@ -113,6 +113,6 @@ export class Board {
   }
 
   moveDown() {
-    this.fallingPos[1] = this.fallingPos[1] + 1;
+    this.tick();
   }
 }
