@@ -22,4 +22,8 @@ export class Shape {
   left() {
     return this.getPos()[0];
   }
+
+  shapeBottomIndexOnBoard() {
+    return this.top() + this.shapeHeight() - 1;
+  }
 }
