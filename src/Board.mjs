@@ -30,7 +30,7 @@ export class Board {
 
   addFallingShapeToLines(lineArray) {
     const top = this.fallingPos[1];
-    const left = this.fallingShape.left();
+    const left = this.fallingPos[0];
     const shapeLines = this.fallingShape.lines();
     for (let iShape = 0; iShape < shapeLines.length; iShape++) {
       if ( !this.isLineEmpty(shapeLines[iShape]) ) {
@@ -58,20 +58,22 @@ export class Board {
     } else {
       this.fallingShape = block;
     }
-    this.fallingShape.setPos( [Math.ceil(this.width / 2) - 1 - Math.trunc(this.fallingShape.width() / 2), 0] );
     this.fallingPos[0] = Math.ceil(this.width / 2) - 1 - Math.trunc(this.fallingShape.width() / 2);
     this.fallingPos[1] = 0;
   }
 
   tick() {
     if (this.hasFalling() === true) {
-      if (this.fallingShape.shapeBottomIndexOnBoard() === this.lastFreeRowIndex()) {
+      if (this.fallingShapeBottomIndex() === this.lastFreeRowIndex()) {
         this.setShapeToBottom();
       } else {
-        this.fallingShape.setPos( [this.fallingShape.left(), this.fallingShape.top() + 1] );
         this.fallingPos[1] = this.fallingPos[1] + 1;
       }
     }
+  }
+
+  fallingShapeBottomIndex() {
+    return this.fallingPos[1] + this.fallingShape.shapeHeight() - 1;
   }
 
   setShapeToBottom() {
