@@ -18,7 +18,7 @@ export class Board {
       lineArray.unshift(this.line());
     }
     if (this.hasFalling()) {
-      this.addShapeToLines(lineArray);
+      this.addFallingShapeToLines(lineArray);
     }
     return lineArray;
   }
@@ -27,7 +27,7 @@ export class Board {
     return this.lines().join('');
   }
 
-  addShapeToLines(lineArray) {
+  addFallingShapeToLines(lineArray) {
     const top = this.fallingShape.top();
     const left = this.fallingShape.left();
     const shapeLines = this.fallingShape.toString().split('\n');
