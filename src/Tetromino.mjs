@@ -39,7 +39,7 @@ export class Tetromino extends Shape {
     return newRow;
   }
 
-  rotate(isRight) {
+  doRotate(isRight) {
     const newShape = Array.from(this.shapeString);
     for (let oldColIdx = 0; oldColIdx < this.shapeString.length; oldColIdx++) {
       let newRowIdx = oldColIdx;
@@ -52,17 +52,18 @@ export class Tetromino extends Shape {
   }
 
   rotateRight() {
-    if (this.altShapeString) {
-      return this.altShape();
-    }
     return this.rotate(true);
   }
 
   rotateLeft() {
+    return this.rotate(false);
+  }
+
+  rotate(isRight) {
     if (this.altShapeString) {
       return this.altShape();
     } else {
-      return this.rotate(false);
+      return this.doRotate(isRight);
     }
   }
 
