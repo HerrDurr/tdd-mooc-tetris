@@ -31,6 +31,10 @@ export class Shape {
     return this.getPos()[0];
   }
 
+  width() {
+    return this.lines()[0].length;
+  }
+
   shapeBottomIndexOnBoard() {
     return this.top() + this.shapeHeight() - 1;
   }
