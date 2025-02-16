@@ -14,7 +14,6 @@ export class Shape {
     throw new Error("Unimplemented method lines()!");
   }
 
-
   width() {
     return this.lines()[0].length;
   }

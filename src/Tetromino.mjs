@@ -27,10 +27,10 @@ export class Tetromino extends Shape {
     return new Tetromino(this.altShapeString, this.shapeString);
   }
 
-  rotatedRow(oldColIdx, isRight) {
+  rotatedRow(oldColIdx, clockwise) {
     let newRow = '';
     for (let oldRowIdx = 0; oldRowIdx < this.shapeString.length; oldRowIdx++) {
-      if (isRight) {
+      if (clockwise) {
         newRow = this.shapeString[oldRowIdx][oldColIdx] + newRow;
       } else {
         newRow = newRow + this.shapeString[oldRowIdx][oldColIdx];
@@ -39,14 +39,14 @@ export class Tetromino extends Shape {
     return newRow;
   }
 
-  doRotate(isRight) {
+  doRotate(clockwise) {
     const newShape = Array.from(this.shapeString);
     for (let oldColIdx = 0; oldColIdx < this.shapeString.length; oldColIdx++) {
       let newRowIdx = oldColIdx;
-      if (!isRight) {
+      if (!clockwise) {
         newRowIdx = this.shapeString.length - 1 - newRowIdx;
       }  
-      newShape[newRowIdx] = this.rotatedRow(oldColIdx, isRight);
+      newShape[newRowIdx] = this.rotatedRow(oldColIdx, clockwise);
     }
     return new Tetromino(newShape);
   }
@@ -59,11 +59,11 @@ export class Tetromino extends Shape {
     return this.rotate(false);
   }
 
-  rotate(isRight) {
+  rotate(clockwise) {
     if (this.altShapeString) {
       return this.altShape();
     } else {
-      return this.doRotate(isRight);
+      return this.doRotate(clockwise);
     }
   }
 
