@@ -62,13 +62,7 @@ export class Board {
   }
 
   tick() {
-    if (this.hasFalling() === true) {
-      if (this.fallingShapeBottomIndex() === this.lastFreeRowIndex()) {
-        this.setShapeToBottom();
-      } else {
-        this.fallingPos[1] = this.fallingPos[1] + 1;
-      }
-    }
+    this.moveDown();
   }
 
   fallingShapeBottomIndex() {
@@ -113,6 +107,12 @@ export class Board {
   }
 
   moveDown() {
-    this.tick();
+    if (this.hasFalling() === true) {
+      if (this.fallingShapeBottomIndex() === this.lastFreeRowIndex()) {
+        this.setShapeToBottom();
+      } else {
+        this.fallingPos[1] = this.fallingPos[1] + 1;
+      }
+    }
   }
 }
