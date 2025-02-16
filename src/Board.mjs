@@ -107,7 +107,9 @@ export class Board {
   }
 
   moveRight() {
-    this.fallingPos[0] = this.fallingPos[0] + 1;
+    if (this.fallingPos[0] < this.width - this.fallingShape.width()) {
+      this.fallingPos[0] = this.fallingPos[0] + 1;
+    }
   }
 
   moveDown() {

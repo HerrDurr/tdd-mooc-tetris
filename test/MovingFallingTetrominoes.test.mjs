@@ -60,8 +60,21 @@ describe("A falling tetromino", () => {
     );
   });
 
+  test("cannot be moved right beyond the board", () => {
+    for (let i = 0; i < 10; i++) {
+      board.moveRight();
+    }
+    expect(board.toString()).to.equalShape(
+      `........T.
+       .......TTT
+       ..........
+       ..........
+       ..........
+       ..........`
+    );
+  });
+
 });
-// it cannot be moved right beyond the board
 // it cannot be moved down beyond the board (will stop falling)
 // it cannot be moved left through other blocks
 // it cannot be moved right through other blocks
