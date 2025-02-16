@@ -40,7 +40,7 @@ describe("Falling tetrominoes", () => {
     expect(board.hasFalling()).to.be.false;
   });
 
-  test.skip("stop when they hit the bottom", () => {
+  test("stop when they hit the bottom", () => {
     board.drop(Tetromino.T_SHAPE);
     fallToBottom(board);
 

@@ -13,7 +13,7 @@ export class Board {
   }
 
   lines() {
-    const lineArray = this.linesWithStaticShapes;
+    const lineArray = this.linesWithStaticShapes.slice();
     while (lineArray.length < this.height) {
       lineArray.unshift(this.line());
     }
@@ -32,7 +32,9 @@ export class Board {
     const left = this.fallingShape.left();
     const shapeLines = this.fallingShape.toString().split('\n');
     for (let iShape = 0; iShape < shapeLines.length; iShape++) {
-      lineArray[top + iShape] = this.line(shapeLines[iShape], left);
+      if (shapeLines[iShape].replaceAll('.','').trim().length > 0) {
+        lineArray[top + iShape] = this.line(shapeLines[iShape], left);
+      }
     }
   }
 
