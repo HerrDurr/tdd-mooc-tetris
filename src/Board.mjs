@@ -32,7 +32,7 @@ export class Board {
     const left = this.fallingShape.left();
     const shapeLines = this.fallingShape.toString().split('\n');
     for (let iShape = 0; iShape < shapeLines.length; iShape++) {
-      if (shapeLines[iShape].replaceAll('.','').trim().length > 0) {
+      if ( !this.isLineEmpty(shapeLines[iShape]) ) {
         lineArray[top + iShape] = this.line(shapeLines[iShape], left);
       }
     }
@@ -72,10 +72,15 @@ export class Board {
 
   setShapeToBottom() {
     this.linesWithStaticShapes = this.lines();
-    while (this.linesWithStaticShapes.length > 0 && this.linesWithStaticShapes[0].replaceAll(".", "").trim().length === 0) {
+    while ( this.linesWithStaticShapes.length > 0 && this.isLineEmpty(this.linesWithStaticShapes[0]) ) {
       this.linesWithStaticShapes.shift();
     }
     this.fallingShape = null;
+  }
+
+  isLineEmpty(line) {
+    const cleanedLine = line.replaceAll(".","").trim();
+    return cleanedLine.length === 0;
   }
 
   lastFreeRowIndex() {
