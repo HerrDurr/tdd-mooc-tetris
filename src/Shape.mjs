@@ -1,5 +1,4 @@
 export class Shape {
-  pos = [-1, -1];
 
   constructor() {
     if (this.constructor == Shape) {
@@ -14,15 +13,6 @@ export class Shape {
   lines() {
     throw new Error("Unimplemented method lines()!");
   }
-
-  setPos(pos) {
-    this.pos = pos;
-  }
-
-  getPos() {
-    return this.pos;
-  }
-
 
 
   width() {
