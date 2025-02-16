@@ -23,20 +23,10 @@ export class Shape {
     return this.pos;
   }
 
-  top() {
-    return this.getPos()[1];
-  }
 
-  left() {
-    return this.getPos()[0];
-  }
 
   width() {
     return this.lines()[0].length;
-  }
-
-  shapeBottomIndexOnBoard() {
-    return this.top() + this.shapeHeight() - 1;
   }
 
   shapeHeight() {
