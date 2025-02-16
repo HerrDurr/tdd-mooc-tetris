@@ -12,7 +12,7 @@ export class Board {
     this.height = height;
   }
 
-  toString() {
+  lines() {
     const lineArray = Array.from({length: this.height}, (_, i) => this.line());
     if (this.hasFalling()) {
       this.addShapeToLines(lineArray);
@@ -21,7 +21,11 @@ export class Board {
       let iLine = this.lastRowIndex() - iBlock;
       lineArray[iLine] = this.line(this.staticBottom[iBlock], 1);
     }
-    return lineArray.join('');
+    return lineArray;
+  }
+
+  toString() {
+    return this.lines().join('');
   }
 
   addShapeToLines(lineArray) {
