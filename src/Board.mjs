@@ -5,6 +5,7 @@ export class Board {
   width;
   height;
   staticBottom = [];
+  linesWithStaticShapes = [];
   fallingShape = null;
 
   constructor(width, height) {
@@ -70,12 +71,16 @@ export class Board {
   }
 
   setShapeToBottom() {
+    this.linesWithStaticShapes = this.lines();
+    while (this.linesWithStaticShapes.length > 0 && this.linesWithStaticShapes[0].replaceAll(".", "").trim().length === 0) {
+      this.linesWithStaticShapes.shift();
+    }
     this.staticBottom[this.staticBottom.length] = this.fallingShape.toString();
     this.fallingShape = null;
   }
 
   lastFreeRowIndex() {
-    return this.lastRowIndex() - this.staticBottom.length;
+    return this.lastRowIndex() - this.linesWithStaticShapes.length;
   }
 
   lastRowIndex() {
