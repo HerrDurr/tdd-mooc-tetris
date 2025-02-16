@@ -108,4 +108,8 @@ export class Board {
   moveRight() {
     this.fallingPos[0] = this.fallingPos[0] + 1;
   }
+
+  moveDown() {
+    this.fallingPos[1] = this.fallingPos[1] + 1;
+  }
 }
