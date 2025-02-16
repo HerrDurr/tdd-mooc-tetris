@@ -7,6 +7,14 @@ export class Shape {
     }
   }
 
+  toString() {
+    return this.lines().join('\n') + '\n';
+  }
+
+  lines() {
+    throw new Error("Unimplemented method lines()!");
+  }
+
   setPos(pos) {
     this.pos = pos;
   }
