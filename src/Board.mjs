@@ -30,20 +30,19 @@ export class Board {
 
   addFallingShapeToLines(lineArray) {
     const top = this.fallingPos[1];
-    const left = this.fallingPos[0];
     const shapeLines = this.fallingShape.lines();
     for (let iShape = 0; iShape < shapeLines.length; iShape++) {
       if ( !this.isLineEmpty(shapeLines[iShape]) ) {
-        lineArray[top + iShape] = this.line(shapeLines[iShape], left);
+        lineArray[top + iShape] = this.line(shapeLines[iShape]);
       }
     }
   }
 
-  line(shapeLine, left) {
+  line(shapeLine) {
     const lineArray = Array.from({length: this.width}, (_, i) => '.');
-    if (shapeLine&&left) {
+    if (shapeLine) {
       for (let iShapeLine = 0; iShapeLine < shapeLine.length; iShapeLine++) {
-        const iLine = left + iShapeLine;
+        const iLine = this.fallingPos[0] + iShapeLine;
         lineArray[iLine] = shapeLine[iShapeLine];
       }
     } 
@@ -102,7 +101,9 @@ export class Board {
   }
 
   moveLeft() {
-    this.fallingPos[0] = this.fallingPos[0] - 1;
+    if (this.fallingPos[0] > 0) {
+      this.fallingPos[0] = this.fallingPos[0] - 1;
+    }
   }
 
   moveRight() {
