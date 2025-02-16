@@ -70,7 +70,7 @@ export class Tetromino extends Shape {
     return this.shapeString.length;
   }
 
-  shapeBottom() {
-    return 2;
+  shapeBottomIndexOnBoard() {
+    return this.top() + 1;
   }
 }

@@ -57,7 +57,7 @@ export class Board {
 
   tick() {
     if (this.hasFalling() === true) {
-      if (this.fallingShape.top() + this.fallingShape.shapeBottom() - 1 === this.lastFreeRowIndex()) {
+      if (this.fallingShape.shapeBottomIndexOnBoard() === this.lastFreeRowIndex()) {
         this.setShapeToBottom();
       } else {
         this.fallingShape.setPos( [this.fallingShape.left(), this.fallingShape.top() + 1] );
