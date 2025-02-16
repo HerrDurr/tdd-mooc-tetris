@@ -141,5 +141,13 @@ describe("Falling blocks", () => {
       expect(board.hasFalling(), "the block should stop moving").to.be.false;
     });
   });
-  
+
+  test("A tick should do nothing when there are no falling blocks", () => {
+    board.tick();
+    expect(board.toString()).to.equalShape(
+      `...
+       ...
+       ...`
+    );
+  });  
 });

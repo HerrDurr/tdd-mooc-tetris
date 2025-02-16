@@ -56,10 +56,12 @@ export class Board {
   }
 
   tick() {
-    if (this.fallingShape.top() === this.lastFreeRowIndex()) {
-      this.setShapeToBottom();
-    } else if (this.hasFalling() === true) {
-      this.fallingShape.setPos( [this.fallingShape.left(), this.fallingShape.top() + 1] );
+    if (this.hasFalling() === true) {
+      if (this.fallingShape.top() === this.lastFreeRowIndex()) {
+        this.setShapeToBottom();
+      } else {
+        this.fallingShape.setPos( [this.fallingShape.left(), this.fallingShape.top() + 1] );
+      }
     }
   }
 
