@@ -4,7 +4,6 @@ import { Block } from "../src/Block.mjs";
 export class Board {
   width;
   height;
-  staticBottom = [];
   linesWithStaticShapes = [];
   fallingShape = null;
 
@@ -14,13 +13,12 @@ export class Board {
   }
 
   lines() {
-    const lineArray = Array.from({length: this.height}, (_, i) => this.line());
+    const lineArray = this.linesWithStaticShapes;
+    while (lineArray.length < this.height) {
+      lineArray.unshift(this.line());
+    }
     if (this.hasFalling()) {
       this.addShapeToLines(lineArray);
-    }
-    for (let iBlock = this.staticBottom.length - 1; iBlock >= 0; iBlock--) {
-      let iLine = this.lastRowIndex() - iBlock;
-      lineArray[iLine] = this.line(this.staticBottom[iBlock], 1);
     }
     return lineArray;
   }
@@ -75,7 +73,6 @@ export class Board {
     while (this.linesWithStaticShapes.length > 0 && this.linesWithStaticShapes[0].replaceAll(".", "").trim().length === 0) {
       this.linesWithStaticShapes.shift();
     }
-    this.staticBottom[this.staticBottom.length] = this.fallingShape.toString();
     this.fallingShape = null;
   }
 
