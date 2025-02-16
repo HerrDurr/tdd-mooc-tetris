@@ -19,10 +19,6 @@ export class Tetromino extends Shape {
     this.altShapeString = altShapeString;
   }
 
-  toString() {
-    return this.lines().join('\n') + '\n';
-  }
-
   lines() {
     return this.shapeString;
   }

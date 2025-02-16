@@ -8,10 +8,6 @@ export class Block extends Shape {
     this.character = character;
   }
 
-  toString() {
-    return this.character;
-  }
-
   lines() {
     return [this.character];
   }
