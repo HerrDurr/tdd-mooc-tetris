@@ -69,4 +69,8 @@ export class Tetromino extends Shape {
   width() {
     return this.shapeString.length;
   }
+
+  shapeBottom() {
+    return 2;
+  }
 }

@@ -29,6 +29,17 @@ describe("Falling tetrominoes", () => {
     );
   });
 
+  test("should not be falling once they hit the bottom", () => {
+    board.drop(Tetromino.T_SHAPE);
+    board.tick();
+    board.tick();
+    board.tick();
+    board.tick();
+    board.tick();
+
+    expect(board.hasFalling()).to.be.false;
+  });
+
   test.skip("stop when they hit the bottom", () => {
     board.drop(Tetromino.T_SHAPE);
     fallToBottom(board);

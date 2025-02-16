@@ -15,4 +15,8 @@ export class Block extends Shape {
   width() {
     return 1;
   }
+
+  shapeBottom() {
+    return 1;
+  }
 }
