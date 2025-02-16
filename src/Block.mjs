@@ -12,6 +12,10 @@ export class Block extends Shape {
     return this.character;
   }
 
+  lines() {
+    return [this.character];
+  }
+
   width() {
     return 1;
   }

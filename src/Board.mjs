@@ -30,7 +30,7 @@ export class Board {
   addFallingShapeToLines(lineArray) {
     const top = this.fallingShape.top();
     const left = this.fallingShape.left();
-    const shapeLines = this.fallingShape.toString().split('\n');
+    const shapeLines = this.fallingShape.lines();
     for (let iShape = 0; iShape < shapeLines.length; iShape++) {
       if ( !this.isLineEmpty(shapeLines[iShape]) ) {
         lineArray[top + iShape] = this.line(shapeLines[iShape], left);
