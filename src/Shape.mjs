@@ -26,4 +26,8 @@ export class Shape {
   shapeBottomIndexOnBoard() {
     return this.top() + this.shapeHeight() - 1;
   }
+
+  shapeHeight() {
+    throw new Error("Unimplemented method shapeHeight()!");
+  }
 }
