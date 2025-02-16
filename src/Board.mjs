@@ -100,4 +100,8 @@ export class Board {
   hasFalling() {
     return !isNull(this.fallingShape);
   }
+
+  moveLeft() {
+    this.fallingPos[0] = this.fallingPos[0] - 1;
+  }
 }
