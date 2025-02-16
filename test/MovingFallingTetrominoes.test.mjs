@@ -22,8 +22,19 @@ describe("A falling tetromino", () => {
     );
   });
 
+  test("can be moved right", () => {
+    board.moveRight();
+    expect(board.toString()).to.equalShape(
+      `.....T....
+       ....TTT...
+       ..........
+       ..........
+       ..........
+       ..........`
+    );
+  });
+
 });
-// a falling tetromino can be moved right
 // a falling tetromino can be moved down
 // it cannot be moved left beyond the board
 // it cannot be moved right beyond the board
