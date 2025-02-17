@@ -38,13 +38,13 @@ export class Board {
     const shapeLines = this.fallingShape.lines();
     for (let iShape = 0; iShape < shapeLines.length; iShape++) {
       if ( !this.isLineEmpty(shapeLines[iShape]) ) {
-        lineArray[top + iShape] = this.line(shapeLines[iShape]);
+        lineArray[top + iShape] = this.line( lineArray[top + iShape].trim(), shapeLines[iShape] );
       }
     }
   }
 
-  line(shapeLine) {
-    const lineArray = this.baseLine();
+  line(originalLine, shapeLine) {
+    const lineArray = this.baseLine(originalLine);
     if (shapeLine) {
       for (let iShapeLine = 0; iShapeLine < shapeLine.length; iShapeLine++) {
         const iLine = this.fallingPos[0] + iShapeLine;
@@ -54,8 +54,12 @@ export class Board {
     return lineArray.join('') + '\n';
   }
 
-  baseLine() {
-    return Array.from({length: this.width}, (_, i) => '.');
+  baseLine(originalLine) {
+    if (originalLine) {
+      return Array.from(originalLine);
+    } else {
+      return Array.from({length: this.width}, (_, i) => '.');
+    }
   }
 
   drop(block) {
@@ -130,7 +134,7 @@ export class Board {
     if (y === this.height) {return true;}
     
     const staticLines = this.staticLines();
-    for (let x = 0; x < this.width; x++) {
+    for (let x = this.fallingPos[0]; x < this.fallingPos[0] + this.fallingShape.width(); x++) {
       if (staticLines[y][x] !== '.') {
         return true;
       }

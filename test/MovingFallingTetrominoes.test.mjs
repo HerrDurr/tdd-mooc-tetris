@@ -104,7 +104,7 @@ describe("A falling tetromino", () => {
     board.tick();
   });
 
-  test.skip("can fall past other blocks", () => {
+  test("can fall past other blocks", () => {
     board.moveRight();
     board.moveRight();
     board.tick();
