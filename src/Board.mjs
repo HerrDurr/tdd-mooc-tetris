@@ -95,14 +95,6 @@ export class Board {
     return cleanedLine.length === 0;
   }
 
-  lastFreeRowIndex() {
-    return this.lastRowIndex() - this.linesWithStaticShapes.length;
-  }
-
-  lastRowIndex() {
-    return this.height - 1;
-  }
-
   hasFalling() {
     return !isNull(this.fallingShape);
   }
