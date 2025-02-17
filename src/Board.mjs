@@ -108,11 +108,15 @@ export class Board {
 
   moveDown() {
     if (this.hasFalling() === true) {
-      if (this.fallingShapeBottomIndex() === this.lastFreeRowIndex()) {
+      if (this.isNextRowOccupied()) {
         this.setShapeToBottom();
       } else {
         this.fallingPos[1] = this.fallingPos[1] + 1;
       }
     }
+  }
+
+  isNextRowOccupied() {
+    return this.fallingShapeBottomIndex() === this.lastFreeRowIndex();
   }
 }
