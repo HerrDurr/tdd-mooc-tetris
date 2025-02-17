@@ -88,7 +88,54 @@ describe("A falling tetromino", () => {
        ...TTT....`
     );
   });
+});
 
+describe("A falling tetromino", () => {
+  let board;
+
+  beforeEach(() => {    
+    board = new Board(10, 6);
+    board.drop(Tetromino.T_SHAPE);
+    for (let i = 0; i < 10; i++) {
+      board.tick();
+    }
+    board.drop(Tetromino.T_SHAPE);
+    board.tick();
+    board.tick();
+  });
+
+  test.skip("can fall past other blocks", () => {
+    board.moveRight();
+    board.moveRight();
+    board.tick();
+
+    expect(board.toString()).to.equalShape(
+      `..........
+       ..........
+       ..........
+       ......T...
+       ....TTTT..
+       ...TTT....`
+    );
+  });
+
+  test.skip("cannot be moved left through other blocks", () => {
+    board.moveRight();
+    board.moveRight();
+    board.tick();
+
+    board.moveLeft();
+    console.log(board.toString());
+    
+    expect(board.toString()).to.equalShape(
+      `..........
+       ..........
+       ..........
+       ......T...
+       ....TTTT..
+       ...TTT....`
+    );
+  });
 });
 // it cannot be moved left through other blocks
 // it cannot be moved right through other blocks
