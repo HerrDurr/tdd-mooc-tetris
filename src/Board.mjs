@@ -122,6 +122,15 @@ export class Board {
   }
 
   isNextRowOccupied() {
-    return this.fallingShapeBottomIndex() === this.lastFreeRowIndex();
+    const y = this.fallingPos[1] + this.fallingShape.shapeHeight();
+    if (y === this.height) {return true;}
+    
+    const staticLines = this.staticLines();
+    for (let x = 0; x < this.width; x++) {
+      if (staticLines[y][x] !== '.') {
+        return true;
+      }
+    }
+    return false;
   }
 }
