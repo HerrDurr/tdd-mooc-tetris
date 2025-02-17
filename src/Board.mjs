@@ -13,11 +13,16 @@ export class Board {
     this.height = height;
   }
 
-  lines() {
+  staticLines() {
     const lineArray = this.linesWithStaticShapes.slice();
     while (lineArray.length < this.height) {
       lineArray.unshift(this.line());
     }
+    return lineArray;
+  }
+
+  lines() {
+    const lineArray = this.staticLines();
     if (this.hasFalling()) {
       this.addFallingShapeToLines(lineArray);
     }
