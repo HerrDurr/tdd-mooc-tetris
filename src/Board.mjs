@@ -44,7 +44,7 @@ export class Board {
   }
 
   line(shapeLine) {
-    const lineArray = Array.from({length: this.width}, (_, i) => '.');
+    const lineArray = this.baseLine();
     if (shapeLine) {
       for (let iShapeLine = 0; iShapeLine < shapeLine.length; iShapeLine++) {
         const iLine = this.fallingPos[0] + iShapeLine;
@@ -52,6 +52,10 @@ export class Board {
       }
     } 
     return lineArray.join('') + '\n';
+  }
+
+  baseLine() {
+    return Array.from({length: this.width}, (_, i) => '.');
   }
 
   drop(block) {
