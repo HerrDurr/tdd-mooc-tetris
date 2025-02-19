@@ -127,10 +127,14 @@ export class Board {
     
     const staticLines = this.staticLines();
     for (let x = this.fallingPos[0]; x < this.fallingPos[0] + this.fallingShape.width(); x++) {
-      if (staticLines[y][x] !== '.') {
+      if ( this.isOccupiedAtCoords(staticLines, x, y) ) {
         return true;
       }
     }
     return false;
+  }
+
+  isOccupiedAtCoords(staticLines, x, y) {
+    return staticLines[y][x] !== '.';
   }
 }
